@@ -3,13 +3,6 @@ from tkinter import ttk
 from PIL import ImageTk, Image
 
 
-# root = Tk()
-#
-# screen_width = root.winfo_screenwidth()
-# screen_height = root.winfo_screenheight()
-#
-# root.geometry(f'{screen_width}x{screen_height}')
-
 class VidPlayer(Tk):
     def main_screen(self) -> None:
         """" Getting our screen size """
@@ -33,6 +26,7 @@ class VidPlayer(Tk):
         self.screen_content()
 
     """ Screen Content """
+
     def screen_content(self) -> None:
         width = 700
         height = 350
