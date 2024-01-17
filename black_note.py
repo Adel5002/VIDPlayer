@@ -3,13 +3,6 @@ from tkinter import ttk
 from PIL import ImageTk, Image
 
 
-# root = Tk()
-#
-# screen_width = root.winfo_screenwidth()
-# screen_height = root.winfo_screenheight()
-#
-# root.geometry(f'{screen_width}x{screen_height}')
-
 class VidPlayer(Tk):
     def main_screen(self) -> None:
         """" Getting our screen size """
@@ -27,13 +20,12 @@ class VidPlayer(Tk):
         self.canvas = Canvas(self, height=self.screen_height, width=self.screen_width, highlightthickness=0)
         self.canvas.pack(fill='both', expand=True)
 
-        """ Introducing Screen Content """
-        self.screen_content()
-
+        """ VidPlayer footer """
         self.bind('<Configure>', self.resizer)
 
-    """ Screen Content """
     def screen_content(self) -> None:
+        """ Screen Content """
+
         width = 700
         height = 350
         x = (self.screen_width / 2) - (width / 2)
@@ -41,14 +33,18 @@ class VidPlayer(Tk):
         self.canvas.create_rectangle(x, y, x + width, y + height, fill='gray', outline='gray')
         self.canvas.pack()
 
-    """ Resizing stuff """
-    def resizer(self, obj):
+    def resizer(self, obj) -> None:
+        """ Resizing stuff """
+        
         global bg, resized_bg, bg_image
         bg = Image.open(self.path)
         resized_bg = bg.resize((obj.width, obj.height), Image.Resampling.LANCZOS)
         bg_image = ImageTk.PhotoImage(resized_bg)
         self.canvas.create_image(0, 0, anchor=NW, image=bg_image)
 
+        """ Introducing Screen Content """
+
+        self.screen_content()
 
 
 if __name__ == '__main__':
